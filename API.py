@@ -9,6 +9,7 @@ class Example(QWidget):
     def __init__(self):
         super().__init__()
         uic.loadUi("design.ui", self)
+        #self.button.clicked.connect(self.map_finding)
         self.initUI()
 
     def getImage(self, coords1, coords2):
@@ -26,7 +27,6 @@ class Example(QWidget):
             self.image.resize(460, 460)
             self.image.setPixmap(self.pixmap)
 
-
         # Запишем полученное изображение в файл.
         self.map_file = "map.png"
         with open(self.map_file, "wb") as file:
@@ -35,12 +35,9 @@ class Example(QWidget):
     def initUI(self):
         self.setWindowTitle('Большая задача по Maps API')
 
-        self.coords1 = QLineEdit(self)
-        self.coords2 = QLineEdit(self)
-
-        self.button = QPushButton("Найти место по координатам", self)
-        self.button.clicked.connect(self.getImage)
-
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_Space:
+            self.map_finding()
 
     def map_finding(self):
         self.getImage(self.coords1.text(), self.coords2.text())
