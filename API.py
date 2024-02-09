@@ -22,8 +22,8 @@ class Example(QWidget):
         else:
             self.pixmap = QPixmap(self.map_file)
             self.image = QLabel(self)
-            self.image.move(0, 0)
-            self.image.resize(600, 450)
+            self.image.move(120, 330)
+            self.image.resize(460, 460)
             self.image.setPixmap(self.pixmap)
 
 
