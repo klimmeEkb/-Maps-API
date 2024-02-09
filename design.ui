@@ -16,7 +16,7 @@
   <property name="styleSheet">
    <string notr="true">background-color: rgb(17, 17, 17);</string>
   </property>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="self.coords1">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -37,7 +37,7 @@ border-radius: 20px;
     <string> Координаты по Y</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
+  <widget class="QLineEdit" name="self.coords2">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -58,7 +58,7 @@ border-radius: 20px;
     <string> Координаты по X</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="search">
+  <widget class="QPushButton" name="self.button">
    <property name="geometry">
     <rect>
      <x>220</x>
