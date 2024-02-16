@@ -17,9 +17,9 @@ class MapFounderApi(QWidget):
         self.button.clicked.connect(self.map_finding)
         self.initUI()
 
-    def getImage(self, coords1, coords2):
+    def getImage(self, coords1, coords2, mash):
         if (float(coords1) < 86 and float(coords2) < 86):
-            map_request = f"https://static-maps.yandex.ru/1.x/?ll={coords1},{coords2}&spn=0.01,0.05&l=map"
+            map_request = f"https://static-maps.yandex.ru/1.x/?ll={coords1},{coords2}&spn=0.01,{mash}&l=map"
             response = requests.get(map_request)
             if not response:
                 print("Ошибка выполнения запроса:")
@@ -39,14 +39,13 @@ class MapFounderApi(QWidget):
         self.image.resize(460, 460)
 
     def keyPressEvent(self, event):
-        if event.key() == Qt.Key_Space:
+        if event.key() == Qt.Key_Space or event.key() == Qt.Key_Enter:
             self.map_finding()
 
     def map_finding(self):
-        self.getImage(self.coords1.text(), self.coords2.text())
+        self.getImage(self.coords1.text(), self.coords2.text(), self.mash.text())
 
     def closeEvent(self, event):
-        """При закрытии формы подчищаем за собой"""
         os.remove(self.map_file)
 
 
