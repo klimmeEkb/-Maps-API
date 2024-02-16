@@ -19,7 +19,7 @@ class MapFounderApi(QWidget):
         self.initUI()
 
     def getImage(self, coords1, coords2, mash, i):
-        if (float(coords1) < 86 and float(coords2) < 86 and float(mash) <= 90 and float(i) + float(mash) >= 0):
+        if (float(coords1) < 86 and float(coords2) < 86 and float(mash) <= 90 and float(i) + float(mash) >= 0 and float(mash) <= 90 and float(i) + float(mash) <= 90):
             map_request = f"https://static-maps.yandex.ru/1.x/?ll={coords1},{coords2}&spn=0.01,{str(float(mash) + float(i))}&l=map"
             response = requests.get(map_request)
             if not response:
