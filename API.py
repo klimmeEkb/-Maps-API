@@ -15,18 +15,20 @@ class MapFounderApi(QWidget):
         super().__init__()
         uic.loadUi(os.path.abspath("design.ui"), self)
         self.i = 0.0
+        self.up = 0.0
+        self.left = 0.0
         self.button.clicked.connect(self.map_finding)
         self.initUI()
 
-    def getImage(self, coords1, coords2, mash, i):
-        if (float(coords1) < 86 and float(coords2) < 86 and float(mash) <= 90 and float(i) + float(mash) >= 0 and float(mash) <= 90 and float(i) + float(mash) <= 90):
-            map_request = f"https://static-maps.yandex.ru/1.x/?ll={coords1},{coords2}&spn=0.01,{str(float(mash) + float(i))}&l=map"
+    def getImage(self, coords1, coords2, mash, i, up, left):
+        if (float(coords1) < 86 and float(coords2) < 86 and float(mash) <= 90 and float(i) + float(mash) >= 0 and float(coords1) + float(up) < 86 and float(coords2) + float(left) < 86):
+            map_request = f"https://static-maps.yandex.ru/1.x/?ll={str(float(coords1) + float(left))},{str(float(coords2) + float(up))}&spn=0.01,{str(float(mash) + float(i))}&l=map"
             response = requests.get(map_request)
             if not response:
                 print("Ошибка выполнения запроса:")
                 print(map_request)
                 print("Http статус:", response.status_code, "(", response.reason, ")")
-                sys.exit(1)    
+                sys.exit(1)
             self.map_file = os.path.abspath("map.png")
             with open(self.map_file, "wb") as file:
                 file.write(response.content)
@@ -49,9 +51,24 @@ class MapFounderApi(QWidget):
         if event.key() == Qt.Key_PageDown:
             self.i += 0.5
             self.map_finding()
+        if event.key() == Qt.Key_Up:
+            self.up -= 0.5
+            self.map_finding()
+        if event.key() == Qt.key_Down:
+            print("UP")
+            self.up += 0.5
+            print("goooooooooooooooood")
+            self.map_finding()
+        if event.key() == Qt.Key_Left:
+            self.left -= 0.5
+            self.map_finding()
+        if event.key() == Qt.Key_Right:
+            self.left += 0.5
+            self.map_finding()
 
+        
     def map_finding(self):
-        self.getImage(self.coords1.text().strip(), self.coords2.text().strip(), self.mash.text().strip(), self.i)
+        self.getImage(self.coords1.text().strip(), self.coords2.text().strip(), self.mash.text().strip(), self.i, self.up, self.left)
 
     def closeEvent(self, event):
         os.remove(self.map_file)
