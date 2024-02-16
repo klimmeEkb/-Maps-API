@@ -35,8 +35,8 @@ class MapFounderApi(QWidget):
     def initUI(self):
         self.setWindowTitle('Большая задача по Maps API')
         self.image = QLabel(self)
-        self.image.move(60, 330)
-        self.image.resize(460, 460)
+        self.image.move(100, 375)
+        self.image.resize(400, 400)
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Space or event.key() == Qt.Key_Enter:
