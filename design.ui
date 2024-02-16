@@ -62,7 +62,7 @@ border-radius: 20px;
    <property name="geometry">
     <rect>
      <x>220</x>
-     <y>160</y>
+     <y>220</y>
      <width>150</width>
      <height>150</height>
     </rect>
@@ -86,6 +86,27 @@ border-radius: 20px;
    </property>
    <property name="text">
     <string>SEARCH</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="mash">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>150</y>
+     <width>581</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+font: 30pt &quot;Bahnschrift SemiLight Condensed&quot;;
+border: 2px solid;
+border-color: rgb(255, 255, 255);
+border-radius: 20px;
+</string>
+   </property>
+   <property name="text">
+    <string> Масштаб</string>
    </property>
   </widget>
  </widget>
